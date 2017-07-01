@@ -1,0 +1,19 @@
+/* This file is for your main application css. */
+
+form#hit_form {
+  float:left;
+  margin-right: 10px;
+}
+
+form#stay_form {
+  float: left;
+}
+
+form#double_form {
+  float: left;
+  margin-left: 40px;
+}
+
+img.card_image {
+  margin: 0px 5px 5px 0px;
+}

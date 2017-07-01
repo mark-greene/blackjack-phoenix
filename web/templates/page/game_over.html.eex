@@ -1,0 +1,9 @@
+<h3>Thanks for playing <%= player_name(@conn) %></h3>
+
+<%= if player_pot(@conn) > 0 do %>
+  <h5>Looks like you're leaving with $<%= player_pot(@conn) %>
+<%= else %>
+  <h5>Maybe it's time to mortage your house and
+    <a href='/'>Start over.</a>
+  </h5>
+<%= end %>

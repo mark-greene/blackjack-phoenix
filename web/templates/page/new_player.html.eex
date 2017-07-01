@@ -1,0 +1,7 @@
+<h3>What's your name?</h3>
+<%= form_tag("/new_player", method: :post) %>
+  <div class="form-group">
+    <input type="text" name="player_name" />
+  </div>
+  <button type="Submit" class="btn btn-success">Submit</button>
+</form>

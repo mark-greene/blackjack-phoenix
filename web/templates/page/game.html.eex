@@ -1,0 +1,69 @@
+<div id='game'>
+
+  <h1>Blackjack!</h1>
+
+  <p>Welcome <%= player_name(@conn) %>.</p>
+
+  <%= if @play_again do %>
+    <p>
+      <strong>Play again?</strong>
+      <a href='/bet' class='btn btn-primary'>Yes</a>
+      <a href='/game/over' class='btn'>No</a>
+    </p>
+  <%= end %>
+
+  <div class="well" id="dealer_cards" style="width: 740px">
+    <h4>Dealer's cards:
+      <%= if dealer_turn?(@conn) do %>
+        <%= dealer_total(@conn) %>
+      <%= end %>
+    </h4>
+      <%= for card <- dealer_hand(@conn) do %>
+        <%= if !dealer_turn?(@conn) && dealer_first_card?(@conn, card) do %>
+          <img src=<%= static_path(@conn, "/images/cards/cover.jpg") %> class='card_image'>
+        <%= else %>
+          <img src=<%= static_path(@conn, card_image(card)) %> class='card_image'>
+        <%= end %>
+      <%= end %>
+
+      <%= if @show_dealer_hit_button do %>
+      <p>
+        <h5>Dealer has <%= dealer_total(@conn) %> and will hit.</h5>
+        <%= form_tag("/game/dealer/hit", id: "dealer_hit", method: :post) %>
+          <input type="submit" class="btn btn-primary" value="Click to see dealer card &rarr;" />
+        </form>
+      </p>
+      <%= end %>
+  </div>
+
+  <br/>
+  <div class="well" id="player_cards" style="width: 740px">
+    <h4>Player's cards: <%= player_total(@conn) %></h4>
+      <%= for card <- player_hand(@conn) do %>
+        <img src=<%= static_path(@conn, card_image(card)) %> class='card_image'>
+      <%= end %>
+
+      <h5>
+        <%= player_name(@conn) %> has $<%= player_pot(@conn) %> and bet $<%= player_bet(@conn) %>.
+      </h5>
+  </div>
+
+  <p>
+    <%= if @show_hit_stay_button do %>
+      What would <%= player_name(@conn) %> like to do?
+
+      <%= form_tag("/game/player/hit", id: "hit_form", method: :post) %>
+        <input type="submit" class="btn btn-success" value="Hit" name="Hit"/>
+      </form>
+      <%= form_tag("/game/player/stay", id: "stay_form", method: :post) %>
+        <input type="submit" class="btn btn-warning" value="Stay" />
+      </form>
+      <%= if allow_double?(@conn) do %>
+        <%= form_tag("/game/player/hit", id: "double_form", method: :post) %>
+          <input type="submit" class="btn btn-danger" value="Double" name="Double"/>
+        </form>
+      <%= end %>
+    <%= end %>
+
+  </p>
+</div>

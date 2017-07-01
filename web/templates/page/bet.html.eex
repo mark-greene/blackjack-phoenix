@@ -1,0 +1,10 @@
+<h3>Make a bet for this round.</h3>
+
+<p> <%= player_name(@conn) %> has $<%= player_pot(@conn) %></p>
+
+<%= form_tag("/bet", method: :post) %>
+  <div class="form-group">
+    <input type="text" name="player_bet" />
+  </div>
+  <button type="Submit" class="btn btn-success">Make a bet</button>
+</form>
