@@ -1,5 +1,5 @@
 # blackjack-phoenix
-Port of Ruby/Sinatra game to Elixir/Phoenix.  Compared with my [golang port](https://github.com/mark-greene/go-blackjack), Elixir is much more effecient but much more challenging (at least to me).
+Port of [Ruby/Sinatra](https://github.com/mark-greene/ruby-web-blackjack) game to Elixir/Phoenix.  Compared with my [golang port](https://github.com/mark-greene/go-blackjack), Elixir is much more effecient but much more challenging (at least to me).
 ### Language
 ```Ruby
 Ruby
